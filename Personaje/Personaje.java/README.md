@@ -1,5 +1,5 @@
 # Simulación de Batalla: Superhéroe vs Villano
-
+// darwin garcia 192287, jordi hernadez 192283
 Este programa simula una batalla entre un superhéroe y un villano, permitiendo a los usuarios ingresar sus atributos y luego observar cómo se desarrolla la pelea hasta que uno de los personajes gane.
 
 ## Clases y Funcionalidades
