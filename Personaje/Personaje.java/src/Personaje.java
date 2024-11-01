@@ -15,12 +15,14 @@ class Personaje {
     }
 
     public void atacar(Personaje oponente) {
-        oponente.vida_hp -= this.fuerza;
+        oponente.vida_hp -= fuerza;
+        System.out.println(nombre + " atacó con fuerza de " + fuerza);
     }
 
     public void defender(int daño) {
-        this.vida_hp -= daño / 2;
-        System.out.println(nombre + " se defendió del ataque y redujo el daño a " + daño / 2);
+        int dañoReducido = daño / 2;
+        vida_hp -= dañoReducido;
+        System.out.println(nombre + " se defendió del ataque y redujo el daño a " + dañoReducido);
     }
 
     public void mostrarEstadisticas() {
@@ -31,8 +33,18 @@ class Personaje {
     }
 
     public void recuperarse() {
-        this.vida_hp += 50; // Recupera 50 puntos de vida
+        if (vida_hp > 0) {
+            vida_hp += 50; // Recupera 50 puntos de vida
+            System.out.println(nombre + " se recuperó 50 de HP");
+        }
+    }
 
+    public void aumentarPoder() {
+        if (vida_hp > 0) {
+            fuerza += 10; // Incrementa la fuerza
+            velocidad += 5; // Incrementa la velocidad
+            System.out.println(nombre + " ha aumentado sus poderes! Fuerza: " + fuerza + " y Velocidad: " + velocidad);
+        }
     }
 }
 
@@ -41,54 +53,12 @@ class SuperHeroe extends Personaje {
     public SuperHeroe(String nombre, int fuerza, int velocidad, int vida_hp) {
         super(nombre, fuerza, velocidad, vida_hp);
     }
-
-    public void atacar(Personaje oponente) {
-        oponente.vida_hp -= this.fuerza;
-        System.out.println(nombre + " atacó con fuerza de " + this.fuerza);
-    }
-
-    public void aumentarPoder() {
-        if (this.vida_hp > 0) {
-            this.fuerza += 10; // Incrementa la fuerza
-            this.velocidad += 5; // Incrementa la velocidad
-            System.out.println(nombre + " ha aumentado sus poderes malignos! Fuerza: " + this.fuerza + " y Velocidad: "
-                    + this.velocidad);
-        }
-    }
-
-    public void recuperarse() {
-        if (this.vida_hp > 0 && Math.random() > 0.5) {
-            this.vida_hp += 50;
-            System.out.println(this.nombre + " se recuperó 50 de HP");
-        }
-    }
 }
 
 // Clase para Villanos
 class Villano extends Personaje {
     public Villano(String nombre, int fuerza, int velocidad, int vida_hp) {
         super(nombre, fuerza, velocidad, vida_hp);
-    }
-
-    public void atacar(Personaje oponente) {
-        oponente.vida_hp -= this.fuerza;
-        System.out.println(nombre + " atacó con fuerza de " + this.fuerza);
-    }
-
-    public void recuperarse() {
-        if (this.vida_hp > 0 && Math.random() > 0.5) {
-            this.vida_hp += 50;
-            System.out.println(this.nombre + " se recuperó 50 de HP");
-        }
-    }
-
-    public void aumentarPoder() {
-        if (vida_hp > 0) {
-            this.fuerza += 10; // Incrementa la fuerza
-            this.velocidad += 5; // Incrementa la velocidad
-            System.out.println(nombre + " ha aumentado sus poderes malignos! Fuerza: " + this.fuerza + " y Velocidad: "
-                    + this.velocidad);
-        }
     }
 }
 
@@ -125,28 +95,36 @@ class Principal {
         System.out.println("-------¡COMIENZA LA BATALLA!-------");
         while (heroe.vida_hp > 0 && villano.vida_hp > 0) {
             heroe.atacar(villano);
-            if (villano.vida_hp > 0) {
-                villano.defender(heroe.fuerza);
+            if (villano.vida_hp > 0) { // Villano solo ataca si está vivo
+                villano.defender(heroe.fuerza); // Villano se defiende del ataque
                 villano.atacar(heroe);
-                heroe.defender(villano.fuerza);
+                heroe.defender(villano.fuerza); // SuperHeroe se defiende del ataque
             }
             heroe.mostrarEstadisticas();
             villano.mostrarEstadisticas();
-
             System.out.println("----------------------------");
             // Opción de recuperación y aumento de poder
             heroe.recuperarse();
             villano.recuperarse();
             heroe.aumentarPoder();
             villano.aumentarPoder();
-
         }
         if (heroe.vida_hp <= 0) {
             System.out.println(villano.nombre + " ha ganado la batalla!");
         } else {
             System.out.println(heroe.nombre + " ha ganado la batalla!");
         }
-
         scanner.close();
     }
 }
+
+    
+    
+           
+        
+
+        
+        
+            
+
+        
