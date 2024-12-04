@@ -1,11 +1,8 @@
-import java.io.Serializable;
-
-public interface Personaje extends Serializable {
+public interface Personaje {
     String getNombre();
-    int getFuerza();
     int getVida();
+    int getFuerza();
     void recibirDanio(int danio);
     boolean estaVivo();
-    void ganarExperiencia(int xp);
+    void defender();
 }
-

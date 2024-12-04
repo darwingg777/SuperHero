@@ -30,7 +30,8 @@ public class Principal {
             int fuerzaHeroe = presentacion.leerAtributo("Fuerza");
             int velocidadHeroe = presentacion.leerAtributo("Velocidad");
             int vidaHeroe = presentacion.leerAtributo("Vida HP");
-            heroe = new SuperHeroe(nombreHeroe, fuerzaHeroe, velocidadHeroe, vidaHeroe);
+            int poderEspecial = presentacion.leerAtributo("Poder Especial"); // Cambiado para incluir poder especial
+            heroe = new SuperHeroe(nombreHeroe, vidaHeroe, fuerzaHeroe, poderEspecial);
         }
 
         if (villano == null) {
@@ -39,7 +40,8 @@ public class Principal {
             int fuerzaVillano = presentacion.leerAtributo("Fuerza");
             int velocidadVillano = presentacion.leerAtributo("Velocidad");
             int vidaVillano = presentacion.leerAtributo("Vida HP");
-            villano = new Villano(nombreVillano, fuerzaVillano, velocidadVillano, vidaVillano);
+            int debilidad = presentacion.leerAtributo("Debilidad");
+            villano = new Villano(nombreVillano, vidaVillano, fuerzaVillano, debilidad);
         }
 
         LogicaBatalla logicaBatalla = new LogicaBatalla(heroe, villano);

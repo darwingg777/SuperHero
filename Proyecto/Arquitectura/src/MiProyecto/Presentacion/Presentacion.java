@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class Presentacion {
-    Scanner scanner;
+    private Scanner scanner;
 
     public Presentacion() {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     public String leerNombre(String tipo) {
